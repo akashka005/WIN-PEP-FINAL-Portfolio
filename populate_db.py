@@ -7,7 +7,6 @@ django.setup()
 from portfolio.models import Skill, Project, Achievement, Education
 
 def populate():
-    # Skills
     Skill.objects.get_or_create(name='Python', level=95, category='Languages')
     Skill.objects.get_or_create(name='JavaScript', level=85, category='Languages')
     Skill.objects.get_or_create(name='C++', level=80, category='Languages')
@@ -20,7 +19,6 @@ def populate():
     Skill.objects.get_or_create(name='Flask', category='Web & Tools')
     Skill.objects.get_or_create(name='Django', category='Web & Tools')
 
-    # Projects
     Project.objects.get_or_create(
         title='Fraud Detection System',
         description='ML-based classification of fraudulent vs legitimate transactions.',
@@ -41,13 +39,11 @@ def populate():
         order=2
     )
 
-    # Achievements
     Achievement.objects.get_or_create(
         title='Top 10 Finalist - Code-A-Haunt Hackathon',
         description='Competed against 100+ teams'
     )
     
-    # Education
     Education.objects.get_or_create(
         institution='Lovely Professional University',
         degree='B.Tech CSE (AI/ML)',
