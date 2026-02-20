@@ -1,0 +1,40 @@
+{% extends 'portfolio/base_auth.html' %}
+
+{% block title %}Login | Akash K A{% endblock %}
+{% block heading %}Welcome Back{% endblock %}
+{% block subheading %}Please enter your details to sign in{% endblock %}
+
+{% block content %}
+<form method="POST" class="auth-form">
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+    <div class="errorlist">
+        {{ form.non_field_errors }}
+    </div>
+    {% endif %}
+
+    <div class="form-group">
+        <label for="{{ form.username.id_for_label }}">Username</label>
+        {{ form.username }}
+        {% if form.username.errors %}
+        <div class="errorlist">{{ form.username.errors }}</div>
+        {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.password.id_for_label }}">Password</label>
+        {{ form.password }}
+        {% if form.password.errors %}
+        <div class="errorlist">{{ form.password.errors }}</div>
+        {% endif %}
+    </div>
+
+    <button type="submit" class="btn btn-primary auth-btn">
+        Sign In
+    </button>
+</form>
+{% endblock %}
+
+{% block footer %}
+Don't have an account? <a href="{% url 'signup' %}">Create one</a>
+{% endblock %}

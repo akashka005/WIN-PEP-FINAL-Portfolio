@@ -1,0 +1,31 @@
+{% extends 'portfolio/base_auth.html' %}
+
+{% block title %}Sign Up | Akash K A{% endblock %}
+{% block heading %}Create Account{% endblock %}
+{% block subheading %}Join the portfolio to explore more features{% endblock %}
+
+{% block content %}
+<form method="POST" class="auth-form">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.errors %}
+        <div class="errorlist">{{ field.errors }}</div>
+        {% endif %}
+        {% if field.help_text %}
+        <p style="font-size: 11px; color: var(--text-tertiary); margin-top: 4px;">{{ field.help_text }}</p>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary auth-btn">
+        Join Now
+    </button>
+</form>
+{% endblock %}
+
+{% block footer %}
+Already have an account? <a href="{% url 'login' %}">Sign in</a>
+{% endblock %}

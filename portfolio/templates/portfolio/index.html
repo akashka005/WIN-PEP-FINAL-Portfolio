@@ -1,0 +1,420 @@
+    {% load static %}
+    <!DOCTYPE html>
+    <html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Akash K A | CSE (AI/ML)</title>
+        <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="https://github.githubassets.com/favicons/favicon-dark.png">
+    </head>
+
+    <body>
+        <header class="header">
+            <div class="container">
+                <nav class="nav">
+                    <a href="{% url 'index' %}" class="logo">
+                        <i class="fab fa-github"></i>
+                        <span>Akash K A</span>
+                    </a>
+                    <ul class="nav-menu">
+                        <li><a href="#home" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#projects" class="nav-link"><i class="fas fa-code"></i> Projects</a></li>
+                        <li><a href="#skills" class="nav-link"><i class="fas fa-cogs"></i> Skills</a></li>
+                        <li><a href="#achievements" class="nav-link"><i class="fas fa-trophy"></i> Achievements</a></li>
+                        <li><a href="#contact" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+                        {% if user.is_authenticated %}
+                        {% if user.is_staff %}
+                        <li><a href="{% url 'dashboard' %}" class="nav-link"><i class="fas fa-tachometer-alt"></i>
+                                Dashboard</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'logout' %}" class="nav-link"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </li>
+                        {% else %}
+                        <li><a href="{% url 'login' %}" class="nav-link"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                        <li><a href="{% url 'signup' %}" class="nav-link"><i class="fas fa-user-plus"></i> Signup</a></li>
+                        {% endif %}
+                    </ul>
+                    <div class="nav-actions">
+                        <a href="{% static 'portfolio/pdf/resume.pdf' %}" class="btn btn-sm btn-outline" id="resume-btn" download="Akash Resume.pdf">
+                            <i class="fas fa-download"></i> Resume
+                        </a>
+                        <button class="theme-toggle" id="theme-toggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button class="menu-toggle">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <h1 class="hero-title">Akash K A</h1>
+                        <h2 class="hero-subtitle">Computer Science & Engineering (AI/ML)</h2>
+                        <p class="hero-description">
+                            Building intelligent solutions that bridge machine learning with real-world applications.
+                            Passionate about creating production-ready AI systems.
+                        </p>
+
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <span class="stat-number" data-count="100">0</span>
+                                <span class="stat-label">LeetCode</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number" data-count="3+">0</span>
+                                <span class="stat-label">Projects</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number" data-count="4">0</span>
+                                <span class="stat-label">Hackathons</span>
+                            </div>
+                        </div>
+
+                        <div class="hero-actions">
+                            <a href="#projects" class="btn btn-primary">
+                                <i class="fas fa-code"></i> View Projects
+                            </a>
+                            <a href="#contact" class="btn btn-outline">
+                                <i class="fas fa-paper-plane"></i> Contact Me
+                            </a>
+                        </div>
+
+                        <div class="hero-links">
+                            <a href="https://github.com/akashka005" target="_blank" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/in/akashka005/" target="_blank" class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://leetcode.com/u/akash00510/" target="_blank" class="social-link">
+                                <i class="fas fa-code"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="hero-visual">
+                        <div class="code-window">
+                            <div class="window-header">
+                                <div class="window-controls">
+                                    <span class="control close"></span>
+                                    <span class="control minimize"></span>
+                                    <span class="control maximize"></span>
+                                </div>
+                                <span class="window-title">ai_developer.py</span>
+                            </div>
+                            <pre><code># AI/ML Developer
+    class Developer:
+        def __init__(self):
+            self.name = "Akash K A"
+            self.field = "AI/ML Engineering"
+            self.skills = [
+                "Machine Learning",
+                "Web Development", 
+                "Data Science",
+                "Problem Solving"
+            ]
+        
+        def build_project(self, idea):
+            return f"Building: {idea}"
+        
+        def solve_problem(self, problem):
+            return "Solution implemented"
+
+    # Always learning, always building</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-info-bar">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>akashka688@gmail.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+91-9600205581</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Phagwara, Punjab</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Technical Skills</h2>
+                    <p class="section-subtitle">Technologies I work with</p>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3 class="category-title">
+                            <i class="fas fa-code"></i>
+                            Languages
+                        </h3>
+                        <div class="skill-items">
+                            {% for skill in skills_by_category.Languages %}
+                            <div class="skill-item">
+                                <span class="skill-name">{{ skill.name }}</span>
+                                <div class="skill-bar">
+                                    <div class="skill-level" data-level="{{ skill.level }}"></div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 class="category-title">
+                            <i class="fas fa-brain"></i>
+                            AI/ML Stack
+                        </h3>
+                        <div class="skill-tags">
+                            {% for skill in skills_by_category.AI_ML %}
+                            <span class="skill-tag">{{ skill.name }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3 class="category-title">
+                            <i class="fas fa-globe"></i>
+                            Web & Tools
+                        </h3>
+                        <div class="skill-tags">
+                            {% for skill in skills_by_category.Web_Tools %}
+                            <span class="skill-tag">{{ skill.name }}</span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured Projects</h2>
+                    <p class="section-subtitle">Real-world AI applications</p>
+                </div>
+
+                <div class="projects-grid">
+                    {% for project in projects %}
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-status {{ project.status }}">{{ project.status|title }}</div>
+                            <h3 class="project-title">{{ project.title }}</h3>
+                            <span class="project-date">{{ project.date }}</span>
+                        </div>
+
+                        <p class="project-description">
+                            {{ project.description }}
+                        </p>
+
+                        <div class="project-tech">
+                            {% for tech in project.tech_list %}
+                            <span class="tech-tag">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+
+                        <div class="project-footer">
+                            <button class="btn btn-sm btn-primary view-details" data-title="{{ project.title }}"
+                                data-date="{{ project.date }}" data-description="{{ project.description }}"
+                                data-details="{{ project.details }}" data-tech="{{ project.tech_stack }}"
+                                data-github="{{ project.github_url }}">
+                                <i class="fas fa-info-circle"></i> Details
+                            </button>
+                            {% if project.github_url %}
+                            <a href="{{ project.github_url }}" target="_blank" class="btn btn-sm btn-outline">
+                                <i class="fab fa-github"></i> Code
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% empty %}
+                    <p>No projects added yet.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Achievements & Education</h2>
+                    <p class="section-subtitle">Recognition and academic journey</p>
+                </div>
+
+                <div class="achievements-grid">
+                    <div class="achievements-list">
+                        <h3 class="subsection-title">Achievements</h3>
+
+                        {% for achievement in achievements %}
+                        <div class="achievement-item">
+                            <div class="achievement-icon">
+                                <i class="{{ achievement.icon_class }}"></i>
+                            </div>
+                            <div class="achievement-content">
+                                <h4>{{ achievement.title }}</h4>
+                                <p>{{ achievement.description }}</p>
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p>Add achievements in admin panel.</p>
+                        {% endfor %}
+                    </div>
+
+                    <div class="education-card">
+                        <h3 class="subsection-title">Education</h3>
+
+                        {% for item in education %}
+                        <div class="education-item">
+                            <h4>{{ item.institution }}</h4>
+                            <p class="education-degree">{{ item.degree }}</p>
+                            <div class="education-details">
+                                <span class="education-date">{{ item.date_range }}</span>
+                                {% if item.grade %}<span class="education-grade">{{ item.grade }}</span>{% endif %}
+                            </div>
+                        </div>
+                        {% empty %}
+                        <p>Add education in admin panel.</p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section section-alt">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <p class="section-subtitle">Let's work together</p>
+                </div>
+
+                <div class="contact-grid">
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <h3>Contact Information</h3>
+                            <div class="contact-details">
+                                <div class="contact-item">
+                                    <i class="fas fa-phone"></i>
+                                    <div>
+                                        <strong>Phone</strong>
+                                        <p>+91-9600205581</p>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-envelope"></i>
+                                    <div>
+                                        <strong>Email</strong>
+                                        <p>akashka688@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div class="contact-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <div>
+                                        <strong>Location</strong>
+                                        <p>Phagwara, Punjab, India</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="social-card">
+                            <h3>Connect Online</h3>
+                            <div class="social-links">
+                                <a href="https://github.com/akashka005" target="_blank" class="social-btn">
+                                    <i class="fab fa-github"></i> GitHub
+                                </a>
+                                <a href="https://www.linkedin.com/in/akashka005/" target="_blank" class="social-btn">
+                                    <i class="fab fa-linkedin"></i> LinkedIn
+                                </a>
+                                <a href="https://leetcode.com/u/akash00510/" target="_blank" class="social-btn">
+                                    <i class="fas fa-code"></i> LeetCode
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <h3>Send a Message</h3>
+                        {% if messages %}
+                        {% for message in messages %}
+                        <div class="alert {{ message.tags }}"
+                            style="padding: 10px; margin-bottom: 20px; border-radius: 4px; background: rgba(26, 127, 55, 0.1); color: var(--success);">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                        {% endif %}
+                        <form id="contact-form" action="{% url 'contact' %}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" placeholder="Your Message" rows="4"
+                                    required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-logo">
+                        <i class="fab fa-github"></i>
+                        <span>Akash K A</span>
+                    </div>
+                    <p class="footer-copyright">
+                        © 2025 Akash K A. All rights reserved.
+                    </p>
+                    <div class="footer-links">
+                        <a href="#home">Home</a>
+                        <a href="#projects">Projects</a>
+                        <a href="#skills">Skills</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <button class="back-to-top">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+
+        <div class="modal" id="project-modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div class="modal-body" id="modal-body">
+                </div>
+            </div>
+        </div>
+
+        <script src="{% static 'portfolio/js/script.js' %}"></script>
+    </body>
+
+    </html>

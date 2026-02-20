@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Portfolio{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'portfolio/css/style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .auth-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-secondary);
+            padding: 20px;
+        }
+
+        .auth-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            width: 100%;
+            max-width: 450px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .auth-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .auth-subtitle {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .auth-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .auth-form label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .auth-form input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .auth-form input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(9, 105, 218, 0.1);
+        }
+
+        .auth-btn {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .auth-footer {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .auth-footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        .errorlist {
+            list-style: none;
+            padding: 10px;
+            background: rgba(207, 34, 46, 0.1);
+            color: var(--danger);
+            border-radius: var(--radius);
+            margin-bottom: 20px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body class="{% if request.COOKIES.theme == 'dark' %}dark-theme{% endif %}">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <a href="{% url 'index' %}" class="logo" style="justify-content: center; margin-bottom: 20px;">
+                    <i class="fab fa-github"></i>
+                    <span>Akash K A</span>
+                </a>
+                <h1 class="auth-title">{% block heading %}{% endblock %}</h1>
+                <p class="auth-subtitle">{% block subheading %}{% endblock %}</p>
+            </div>
+
+            {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div class="alert {{ message.tags }}"
+                    style="padding: 10px; margin-bottom: 20px; border-radius: 4px; background: rgba(26, 127, 55, 0.1); color: var(--success); font-size: 13px;">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            {% block content %}{% endblock %}
+
+            <div class="auth-footer">
+                {% block footer %}{% endblock %}
+            </div>
+        </div>
+    </div>
+    <script>
+        // Simple theme sync
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-theme');
+        }
+    </script>
+</body>
+
+</html>

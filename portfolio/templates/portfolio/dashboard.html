@@ -1,0 +1,142 @@
+{% extends 'portfolio/base_auth.html' %}
+
+{% block title %}Admin Dashboard | Akash K A{% endblock %}
+{% block heading %}Admin Dashboard{% endblock %}
+{% block subheading %}Manage your portfolio projects and view inquiries{% endblock %}
+
+{% block content %}
+<style>
+    .dashboard-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .dashboard-section {
+        background: var(--bg-primary);
+        border: 1px solid var(--border-primary);
+        border-radius: var(--radius);
+        padding: 20px;
+    }
+
+    .section-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .data-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .data-table th,
+    .data-table td {
+        text-align: left;
+        padding: 12px;
+        border-bottom: 1px solid var(--border-primary);
+        font-size: 14px;
+    }
+
+    .data-table th {
+        font-weight: 600;
+        color: var(--text-secondary);
+    }
+
+    .badge {
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    .badge-success {
+        background: rgba(26, 127, 55, 0.1);
+        color: var(--success);
+    }
+
+    .badge-info {
+        background: rgba(9, 105, 218, 0.1);
+        color: var(--accent);
+    }
+
+    .auth-card {
+        max-width: 900px;
+    }
+
+    /* Wider for dashboard */
+</style>
+
+<div class="dashboard-grid">
+    <div class="dashboard-section">
+        <div class="section-title">
+            <span>Recent Projects</span>
+            <a href="/admin/portfolio/project/add/" class="btn btn-sm btn-primary">Add Project</a>
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for project in projects %}
+                <tr>
+                    <td>{{ project.title }}</td>
+                    <td><span class="badge badge-info">{{ project.status|title }}</span></td>
+                    <td>{{ project.date }}</td>
+                    <td>
+                        <a href="/admin/portfolio/project/{{ project.id }}/change/" style="color: var(--accent);"><i
+                                class="fas fa-edit"></i></a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No projects yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="dashboard-section">
+        <div class="section-title">Contact Messages</div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>From</th>
+                    <th>Subject</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for msg in contact_messages %}
+                <tr>
+                    <td>{{ msg.name }} ({{ msg.email }})</td>
+                    <td>{{ msg.subject }}</td>
+                    <td>{{ msg.created_at|date:"M d, Y" }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="3">No messages yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div style="margin-top: 30px; text-align: right;">
+    <a href="{% url 'logout' %}" class="btn btn-outline" style="color: var(--danger);">Logout</a>
+</div>
+{% endblock %}
+
+{% block footer %}
+<a href="{% url 'index' %}">Back to Portfolio</a>
+{% endblock %}
